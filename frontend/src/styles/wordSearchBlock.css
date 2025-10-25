@@ -1,0 +1,234 @@
+.word-search-block {
+    position: relative;
+    width: 400px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation khi verified - fade out mượt */
+.word-search-block.verified-success {
+    animation: fadeOut 1.2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.word-search-header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 15px;
+}
+
+.word-search-title {
+    margin: 0 0 6px 0;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.word-search-subtitle {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.word-search-content {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.words-to-find {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.word-item {
+    background-color: #f1f3f4;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.word-item.found {
+    background-color: #e6f7ea;
+    color: #0f9d58;
+    border-color: #0f9d58;
+}
+
+.checkmark {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.word-search-progress {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    border: 2px solid #1a73e8;
+}
+
+.word-search-grid {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.grid-row {
+    display: flex;
+}
+
+.grid-cell {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    background-color: white;
+    color: #202124;
+}
+
+.grid-cell:hover {
+    background-color: #f8f9fa;
+}
+
+.grid-cell.selected {
+    background-color: #e8f0fe !important;
+    color: #1a73e8 !important;
+    border-color: #1a73e8;
+    animation: pulseSelection 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes pulseSelection {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.grid-cell.found-word {
+    background-color: #e6f7ea;
+    color: #0f9d58;
+    border-color: #0f9d58;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 450px) {
+    .word-search-block {
+        width: 95%;
+        max-width: 400px;
+    }
+
+    .grid-cell {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .word-item {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+}
+
+
+
+/* Redesigned Success Badge */
+.word-search-block.verified-success::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-color: #4CAF50; /* Green color for success */
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+
+    /* Embed the checkmark SVG directly as a background image */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+
+    animation: badge-appear 0.3s ease-out;
+}
+
+/* Remove the ::before pseudo-element as it's no longer needed */
+.word-search-block.verified-success::before {
+    display: none;
+}
+
+@keyframes badge-appear {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Remove the old checkmark animation as it's no longer needed */
+@keyframes checkmark-draw {
+    /* This is no longer needed */
+}

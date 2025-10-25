@@ -1,0 +1,188 @@
+/* This area covers the whole screen for ducks to move freely */
+.ducks-movement-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 11; /* Ducks are on the top layer */
+    pointer-events: none; /* Allow clicks to pass through to ducks */
+}
+
+/* The main captcha block is centered and fixed */
+.catch-ducks-block {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 400px;
+    height: 580px;
+    background-color: white;
+    z-index: 10; /* Below the ducks, but above other page content */
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 8px;
+}
+
+/* Banner styling */
+.catch-ducks-banner {
+    flex-grow: 2;
+    flex-basis: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px 5px 0 5px;
+    padding-left: 15px;
+    background-color: var(--blue-1);
+}
+
+.catch-ducks-banner > p {
+    color: white;
+    font-size: 12px;
+}
+
+.catch-ducks-banner > h1 {
+    color: white;
+    font-size: 24px;
+}
+
+/* Container for the grid inside the captcha block */
+.catch-ducks-grid-container {
+    flex-grow: 8;
+    flex-basis: 0;
+    position: relative;
+    margin: 0 5px 5px 5px;
+    border: 1px solid #ddd;
+}
+
+.duck {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    user-select: none;
+    transition: top 1s ease, left 1s ease, transform 0.2s ease; /* Added transform transition */
+    pointer-events: auto; /* Ducks can be clicked */
+}
+
+.duck img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: flap 0.3s infinite alternate;
+}
+
+/* Styling for the number on the duck */
+.duck-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black, -1px -1px 3px black;
+    pointer-events: none; /* Make sure the number doesn't block clicks on the duck */
+}
+
+/* Grid for the duck homes */
+.duck-home-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3px;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.duck-home-cell {
+    background-color: #f0f0f0; /* Light gray background like a captcha */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Animation for wings */
+@keyframes flap {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0.95) rotate(2deg);
+    }
+}
+
+/* Success badge for caught ducks */
+.duck.caught::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: #4CAF50; /* Green success color */
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    animation: badge-appear 0.3s ease-out;
+}
+
+@keyframes badge-appear {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Styling for the failure 'X' mark */
+.fail-x {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    animation: fade-in 0.2s ease-out;
+}
+
+.fail-x::before, .fail-x::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 6px; /* Thickness of the X */
+    background-color: red;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.fail-x::before {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.fail-x::after {
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
