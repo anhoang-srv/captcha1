@@ -59,11 +59,11 @@
 
 .duck {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
     user-select: none;
-    transition: top 1s ease, left 1s ease, transform 0.2s ease; /* Added transform transition */
+    transition: transform 0.2s ease; /* Only animate rotation, not position */
     pointer-events: auto; /* Ducks can be clicked */
 }
 

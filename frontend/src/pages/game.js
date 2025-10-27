@@ -12,7 +12,7 @@ import CatchDucksBlock from '../components/catchDucksBlock';
 import '../styles/game.css';
 
 // Define the order and types of games
-const GAME_TYPES = ['catchducks', 'captcha', 'puzzle', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
+const GAME_TYPES = ['captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
 const MAX_LEVEL = GAME_TYPES.length;
 
 // Get the game type for the current level
