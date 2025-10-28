@@ -9,10 +9,12 @@ import TicTacToeBlock from '../components/ticTacToeBlock';
 import WordSearchBlock from '../components/wordSearchBlock';
 import MathProBlock from '../components/MathProBlock';
 import CatchDucksBlock from '../components/catchDucksBlock';
+import MinesweeperBlock from '../components/minesweeperBlock';
 import '../styles/game.css';
 
 // Define the order and types of games
-const GAME_TYPES = ['captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
+// Minesweeper được đặt ở đầu để thử nghiệm
+const GAME_TYPES = ['minesweeper', 'captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
 const MAX_LEVEL = GAME_TYPES.length;
 
 // Get the game type for the current level
@@ -119,6 +121,12 @@ export default function Game({level, setLevel, playSound}) {
             let newBlockData = [];
 
             switch (gameType) {
+                case 'minesweeper':
+                    newBlockData = [{
+                        type: 'minesweeper',
+                        verified: null
+                    }];
+                    break;
                 case 'tictactoe':
                     newBlockData = [{
                         type: 'tictactoe',
@@ -245,7 +253,25 @@ export default function Game({level, setLevel, playSound}) {
             <div className='level-tracker'>Level: {level}</div>
             <div className='captcha-blocks'>
                 {blockData.map((block, i) => {
-                    if (block.type === 'puzzle') {
+                    if (block.type === 'minesweeper') {
+                        return (
+                            <MinesweeperBlock
+                                key={`minesweeper-${i}`}
+                                onSuccess={() => {
+                                    const newData = [...blockData];
+                                    newData[i].verified = true;
+                                    setBlockData(newData);
+                                }}
+                                onFailure={() => {
+                                    const newData = [...blockData];
+                                    newData[i].verified = false;
+                                    setBlockData(newData);
+                                }}
+                                playSound={playSound}
+                            />
+                        );
+                    }
+                    else if (block.type === 'puzzle') {
                         return (
                             <PuzzleBlock
                                 key={`puzzle-${i}`}

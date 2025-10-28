@@ -59,19 +59,29 @@
 
 .duck {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 60px;
     height: 60px;
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease; /* Only animate rotation, not position */
     pointer-events: auto; /* Ducks can be clicked */
+    will-change: transform; /* GPU acceleration for smooth movement */
 }
 
-.duck img {
+.duck:not(.caught) img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     animation: flap 0.3s infinite alternate;
+}
+
+.duck.caught img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: none; /* Stop flap animation when caught for better performance */
 }
 
 /* Styling for the number on the duck */

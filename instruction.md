@@ -122,4 +122,29 @@ New Level:
             Hiệu ứng: Khi nhấp vào một con vịt, nó sẽ di chuyển về vị trí ban đầu của nó.
 
             Thử thách: Sự di chuyển ngẫu nhiên của các con vịt làm tăng độ khó, yêu cầu người chơi phải phản xạ nhanh và chính xác.  
+8. Minesweeper Captcha - Không giới hạn thời gian
+    *   Cơ chế chơi:
+        
+        -   Lần click đầu: Tạo board, đảm bảo không trúng mìn
+            Mở ô: Flood fill nếu gặp ô trống (số 0)
+            Thắng: Mở hết ô an toàn
+            Thua: Mở phải mìn
+
+        -   Điều kiện thành công Captcha: Người dùng phải mở ít nhất 70% ô an toàn hoặc cắm cờ chính xác ít nhất 6/9 mìn
     
+    *   Thiết kế gameplay:
+            
+            - Thông số thiết kế:
+                Lưới: 8x8 ô (64 ô tổng)
+                Số mìn: 8-10 quả (12-15%)
+                Thời gian: Không giới hạn
+            - Thuật toán cốt lõi
+                Đặt mìn an toàn: Tránh vùng 3x3 quanh ô đầu tiên
+                Flood Fill: Mở tự động các ô liền kề khi gặp ô số 0
+                Kiểm tra thắng: Tất cả ô không phải mìn đã được mở
+
+            Tối ưu hóa hiệu suất:
+                - Virtual DOM: Chỉ re-render các ô thay đổi
+                - Event Delegation: Sử dụng một event listener cho toàn bộ board
+                - RequestAnimationFrame: Cho animations mượt mà
+                - Web Workers: Xử lý thuật toán flood-fill cho boards lớn

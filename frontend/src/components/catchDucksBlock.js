@@ -7,7 +7,7 @@ const CAPTCHA_HEIGHT = 580; // The fixed height of the captcha block
 const DUCK_SPEED = 5; // Increased speed for better responsiveness
 const MIN_SPEED = 2.5; // Higher minimum speed for consistent movement
 const MAX_SPEED = 8; // Higher max speed for dynamic gameplay
-const ANIMATION_SMOOTHNESS = 0.8; // Smoothness factor for interpolation
+const ANIMATION_SMOOTHNESS = 1.0; // Smoothness factor for interpolation (1.0 = full speed, smoother)
 
 // Helper to generate a random position
 const getRandomPosition = () => ({
@@ -248,13 +248,11 @@ const CatchDucksBlock = ({ onComplete, onFailure }) => {
         {ducks.map(duck => (
           <div
             key={duck.id}
-            className={`duck ${duck.isCaught ? 'caught' : ''}`}
+            className={`duck ${duck.isCaught ? 'caught' : ''} ${failedDuckId === duck.id ? 'failed' : ''}`}
             onMouseDown={(event) => handleDuckClick(event, duck)}
             onContextMenu={handleContextMenu}
             style={{
-              left: duck.x,
-              top: duck.y,
-              transform: `rotate(${duck.rotation || 0}deg)`,
+              transform: `translate3d(${duck.x}px, ${duck.y}px, 0) rotate(${duck.rotation || 0}deg)`,
               userSelect: 'none', // Prevent text selection
               WebkitUserSelect: 'none',
               MozUserSelect: 'none',
@@ -271,8 +269,8 @@ const CatchDucksBlock = ({ onComplete, onFailure }) => {
       {/* Visible captcha block - centered */}
       <div className="catch-ducks-block">
         <div className="catch-ducks-banner">
-          <p>To verify you are a human, please</p>
-          <h1>Select all ducks</h1>
+          <p>Để xác minh bạn là con người, vui lòng</p>
+          <h1>Chọn tất cả những con vịt</h1>
         </div>
         <div className="catch-ducks-grid-container">
           <div className="duck-home-grid">
