@@ -49,6 +49,7 @@
 .main-menu-title {
     font-size: 36px !important;
     margin: 20px 0;
+    color: black !important;
 }
 
 .menu-content > button {

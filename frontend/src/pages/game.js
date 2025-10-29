@@ -10,11 +10,12 @@ import WordSearchBlock from '../components/wordSearchBlock';
 import MathProBlock from '../components/MathProBlock';
 import CatchDucksBlock from '../components/catchDucksBlock';
 import MinesweeperBlock from '../components/minesweeperBlock';
+import VegetableSelectionBlock from '../components/vegetableSelectionBlock';
 import '../styles/game.css';
 
 // Define the order and types of games
-// Minesweeper được đặt ở đầu để thử nghiệm
-const GAME_TYPES = ['minesweeper', 'captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
+// Vegetable được đặt ở đầu để thử nghiệm
+const GAME_TYPES = ['vegetable', 'minesweeper', 'captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
 const MAX_LEVEL = GAME_TYPES.length;
 
 // Get the game type for the current level
@@ -174,6 +175,12 @@ export default function Game({level, setLevel, playSound}) {
                 case 'catchducks':
                     newBlockData = [{
                         type: 'catchducks',
+                        verified: null
+                    }];
+                    break;
+                case 'vegetable':
+                    newBlockData = [{
+                        type: 'vegetable',
                         verified: null
                     }];
                     break;
@@ -382,6 +389,24 @@ export default function Game({level, setLevel, playSound}) {
                             <CatchDucksBlock
                                 key={`catchducks-${i}`}
                                 onComplete={() => {
+                                    const newData = [...blockData];
+                                    newData[i].verified = true;
+                                    setBlockData(newData);
+                                }}
+                                onFailure={() => {
+                                    const newData = [...blockData];
+                                    newData[i].verified = false;
+                                    setBlockData(newData);
+                                }}
+                                playSound={playSound}
+                            />
+                        );
+                    }
+                    else if (block.type === 'vegetable') {
+                        return (
+                            <VegetableSelectionBlock
+                                key={`vegetable-${i}`}
+                                onSuccess={() => {
                                     const newData = [...blockData];
                                     newData[i].verified = true;
                                     setBlockData(newData);

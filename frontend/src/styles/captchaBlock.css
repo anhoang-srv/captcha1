@@ -91,9 +91,9 @@
 }
 
 .captcha-image.clicked {
-    border: 8px solid #00ff00 !important; /* Thick green border */
+    border: 3px solid #00ff00 !important; /* Green border */
     box-shadow: 0 0 20px rgba(0,255,0,1) !important; /* Bright green glow */
-    outline: 3px solid white !important; /* White outline */
+    outline: 2px solid white !important; /* White outline */
     filter: brightness(1.2) !important; /* Make it brighter */
     /* Remove transform from here to avoid conflicts */
 }
@@ -106,23 +106,23 @@
 }
 
 .captcha-image.clicked.skew {
-    border: 8px solid #00ff00 !important;
+    border: 3px solid #00ff00 !important;
     box-shadow: 0 0 20px rgba(0,255,0,1) !important;
-    outline: 3px solid white !important;
+    outline: 2px solid white !important;
     filter: brightness(1.2) !important;
 }
 
 .captcha-image.clicked.rotate {
-    border: 8px solid #00ff00 !important;
+    border: 3px solid #00ff00 !important;
     box-shadow: 0 0 20px rgba(0,255,0,1) !important;
-    outline: 3px solid white !important;
+    outline: 2px solid white !important;
     filter: brightness(1.2) !important;
 }
 
 .captcha-image.clicked.movement {
-    border: 8px solid #00ff00 !important;
+    border: 3px solid #00ff00 !important;
     box-shadow: 0 0 20px rgba(0,255,0,1) !important;
-    outline: 3px solid white !important;
+    outline: 2px solid white !important;
     filter: brightness(1.2) !important;
 }
 
@@ -178,16 +178,16 @@
 
 /* Ensure clicked state persists on hover with strong visual */
 .captcha-image.clicked:hover {
-    border: 8px solid #00ff00 !important;
+    border: 3px solid #00ff00 !important;
     box-shadow: 0 0 25px rgba(0,255,0,1) !important;
-    outline: 3px solid white !important;
+    outline: 2px solid white !important;
     filter: brightness(1.3) !important;
 }
 
 /* Clicked negative images */
 .captcha-image.negative.clicked {
     filter: invert(1) brightness(1.2) !important;
-    border: 8px solid #00ff00 !important;
+    border: 3px solid #00ff00 !important;
     box-shadow: 0 0 20px rgba(0,255,0,1) !important;
 }
 
