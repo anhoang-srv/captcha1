@@ -76,8 +76,6 @@ const VegetableSelectionBlock = ({ onSuccess, onFailure, playSound }) => {
   };
 
   const clickVerify = () => {
-    setDisplayOn(false);
-
     // Kiểm tra xem có chọn hoa quả nào không
     const hasFruitSelected = images.some(img => img.type === 'fruit' && img.clicked);
 
@@ -91,11 +89,18 @@ const VegetableSelectionBlock = ({ onSuccess, onFailure, playSound }) => {
       // Thắng
       setGameOver(true);
       setGameStatus('success');
-      setFeedbackMessage('Xác thực thành công!');
+      setFeedbackMessage('✅ Xác thực thành công! Bạn đã chọn đúng tất cả rau củ.');
       playSound('beep');
+
+      // Đợi 1.8s để người chơi đọc message, sau đó fade out trong 0.5s
+      setTimeout(() => {
+        setDisplayOn(false); // Bắt đầu fade out
+      }, 1800);
+
+      // Tổng thời gian: 1.8s (đọc message) + 0.5s (fade out) = 2.3s
       setTimeout(() => {
         onSuccess();
-      }, 1500);
+      }, 2300);
     } else {
       // Thua - Hiển thị thông báo lỗi chi tiết
       setGameOver(true);
@@ -115,9 +120,16 @@ const VegetableSelectionBlock = ({ onSuccess, onFailure, playSound }) => {
 
       setFeedbackMessage(errorMessage);
       playSound('game-over');
+
+      // Đợi 2.2s để người chơi đọc message, sau đó fade out trong 0.5s
+      setTimeout(() => {
+        setDisplayOn(false); // Bắt đầu fade out
+      }, 2200);
+
+      // Tổng thời gian: 2.2s (đọc message) + 0.5s (fade out) = 2.7s
       setTimeout(() => {
         onFailure();
-      }, 2000); // Tăng delay lên 2 giây để người chơi đọc thông báo
+      }, 2700);
     }
   };
 

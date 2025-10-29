@@ -9,7 +9,7 @@
   background-color: white;
   overflow: hidden;
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.5s ease-out; /* Tăng từ 0.3s lên 0.5s để fade out mượt mà hơn */
 }
 
 .vegetable-selection-block.display-on {
