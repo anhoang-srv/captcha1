@@ -164,3 +164,38 @@ New Level:
         -   Giao diện: Hiển thị giao diện captcha như các level khác, lưới ô vuông (5*5), các điểm nối (3-4 cặp) và đường vẽ
         -   Hiệu ứng: Vẽ đường khi nhấp chuột, kiểm tra và đánh dấu khi kết nối thành công
         -   Thử thách: Các cặp điểm sẽ xuất hiện ngẫu nhiên trên lưới, yêu cầu sự chính xác và suy nghĩ logic để kết nối các cặp điểm (Lưu ý các cặp điểm sẽ xuất hiện với điều kiện có thể cho người chơi hoàn thành được level )
+10. Card Matching
+    *   Cơ Chế Chơi:
+
+        -   Mục Tiêu Của Trò Chơi: Người chơi cần tìm và ghép các cặp hình giống nhau trong thời gian giới hạn hoặc với số lượt tối thiểu.
+
+        -   Cách Thực Hiện:
+
+            +   Trò chơi sẽ có một bảng gồm các ô chứa các hình ảnh (ảnh hoa quả). Các hình ảnh này sẽ được xáo trộn và ẩn dưới những ô vuông.
+
+            +   Người chơi cần nhấp vào hai ô bất kỳ để mở chúng ra. Nếu hai hình ảnh trong các ô đó giống nhau, chúng sẽ được giữ lại và người chơi có thể chọn tiếp.
+
+            +   Nếu hai hình ảnh không giống nhau, chúng sẽ bị ẩn lại và người chơi tiếp tục thử.
+
+        -   Điều Kiện Thắng: Người chơi thắng khi đã tìm hết tất cả các cặp hình giống nhau mà không hết lượt chơi hoặc thời gian (tuỳ vào cách thiết kế).
+
+        -   Điều Kiện Thua: Người chơi thua nếu:
+
+            +   Không tìm đủ các cặp hình trong thời gian quy định.
+
+            +   Hết lượt chơi mà vẫn chưa tìm hết tất cả các cặp hình.
+    *   Thiết Kế Gameplay
+        -   Màn Hình Chính: 
+            +   Giao diện giống các màn hình chơi của các level khác phù hợp để làm captcha.
+
+        -   Bảng Chơi: Một bảng với nhiều ô vuông xếp theo dạng lưới (ví dụ: 4x4, 6x6), mỗi ô chứa một hình ảnh ẩn.
+
+        -   Các Cấp Độ (Levels): Trò chơi có thể có nhiều cấp độ từ dễ đến khó:
+
+        -   Cấp độ dễ: 4x4 lưới, số lượng cặp hình ít.
+
+        -   Cấp độ khó: 6x6 hoặc 8x8 lưới, số lượng cặp hình tăng lên.
+
+    *   Điều Khiển (Controls)
+
+        -   Click để mở hình: Người chơi chỉ cần nhấp vào các ô vuông để mở chúng ra.

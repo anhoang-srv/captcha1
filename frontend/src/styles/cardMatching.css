@@ -1,0 +1,319 @@
+.card-matching-block {
+  position: relative;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 550px;
+  height: 680px;
+  background-color: white;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.card-matching-block.display-on {
+  opacity: 1;
+}
+
+.card-matching-banner {
+  flex-grow: 0.5;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 5px 0 5px;
+  padding: 8px 10px;
+  background-color: var(--blue-1);
+}
+
+.card-matching-banner > p {
+  color: white;
+  font-size: 10px;
+  margin: 2px 0;
+  line-height: 1.3;
+}
+
+.card-matching-banner > h1 {
+  color: white;
+  font-size: 18px;
+  margin: 5px 0;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.card-grid {
+  flex-shrink: 0;
+  flex-grow: 4;
+  display: grid;
+  gap: 7px;
+  margin: 0 5px;
+  padding: 5px;
+  perspective: 1000px;
+  perspective-origin: center center;
+}
+
+/* Card styling */
+.card {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, z-index 0s;
+  user-select: none;
+  min-height: 50px;
+  min-width: 50px;
+  z-index: 1;
+  transform-origin: center center;
+}
+
+.card:hover:not(.matched) {
+  transform: scale(1.03);
+  z-index: 10;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+
+.card.flipped {
+  z-index: 20;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid #5568d3;
+}
+
+.card-pattern {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-back {
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Matched card animation */
+.card.matched {
+  animation: matchPulse 0.6s ease-out;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.card.matched .card-front,
+.card.matched .card-back {
+  border: 3px solid #4CAF50;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+}
+
+@keyframes matchPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Footer */
+.card-matching-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid lightgrey;
+  flex-grow: 0;
+  flex-basis: auto;
+  padding: 6px 10px;
+  min-height: 40px;
+}
+
+.game-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.difficulty-badge {
+  padding: 4px 10px;
+  background-color: var(--blue-1);
+  color: white;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Feedback message */
+.feedback-message {
+  text-align: center;
+  padding: 10px 15px;
+  margin: 5px 5px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: slideDownShake 0.5s ease-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+@keyframes slideDownShake {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  70% {
+    transform: translateX(5px);
+  }
+  80% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.feedback-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 2px solid #c3e6cb;
+}
+
+.feedback-message.failure {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 2px solid #f5c6cb;
+}
+
+/* Block flash effect */
+.block-flash {
+  position: absolute;
+  top: 60%;
+  left: -10%;
+  box-shadow:
+    0 0 500px 250px var(--bg-1),
+    0 0 500px 250px rgba(255,255,255),
+    0 0 0 var(--blue-1)
+  ;
+  transition: box-shadow .6s;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.block-flash.display-on {
+  box-shadow:
+    0 0 0 var(--bg-1),
+    0 0 0 rgba(255,255,255),
+    0 0 0 var(--blue-1)
+  ;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-matching-block {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    min-height: 680px;
+  }
+
+  .card-pattern {
+    font-size: 20px;
+  }
+
+  .card-matching-banner > h1 {
+    font-size: 16px;
+  }
+
+  .card-matching-banner > p {
+    font-size: 9px;
+  }
+
+  .card-grid {
+    gap: 4px;
+    padding: 3px;
+  }
+}
+
+/* Animation for card flip on initial load */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotateY(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+.card {
+  animation: cardEntrance 0.5s ease-out backwards;
+}
+
+/* Stagger animation for cards */
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.2s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.3s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
+.card:nth-child(8) { animation-delay: 0.4s; }
+.card:nth-child(9) { animation-delay: 0.45s; }
+.card:nth-child(10) { animation-delay: 0.5s; }
+.card:nth-child(11) { animation-delay: 0.55s; }
+.card:nth-child(12) { animation-delay: 0.6s; }
+.card:nth-child(13) { animation-delay: 0.65s; }
+.card:nth-child(14) { animation-delay: 0.7s; }
+.card:nth-child(15) { animation-delay: 0.75s; }
+.card:nth-child(16) { animation-delay: 0.8s; }
+.card:nth-child(17) { animation-delay: 0.85s; }
+.card:nth-child(18) { animation-delay: 0.9s; }
+.card:nth-child(19) { animation-delay: 0.95s; }
+.card:nth-child(20) { animation-delay: 1s; }
+
