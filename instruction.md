@@ -143,8 +143,24 @@ New Level:
                 Flood Fill: Mở tự động các ô liền kề khi gặp ô số 0
                 Kiểm tra thắng: Tất cả ô không phải mìn đã được mở
 
-            Tối ưu hóa hiệu suất:
-                - Virtual DOM: Chỉ re-render các ô thay đổi
-                - Event Delegation: Sử dụng một event listener cho toàn bộ board
-                - RequestAnimationFrame: Cho animations mượt mà
-                - Web Workers: Xử lý thuật toán flood-fill cho boards lớn
+    *   Tối ưu hóa hiệu suất:
+            
+            - Virtual DOM: Chỉ re-render các ô thay đổi
+            - Event Delegation: Sử dụng một event listener cho toàn bộ board
+            - RequestAnimationFrame: Cho animations mượt mà
+            - Web Workers: Xử lý thuật toán flood-fill cho boards lớn
+9. Pipe Puzzle
+    *   Cơ chế chơi:
+        -   Lưới chơi: Một bảng ô vuông (grid) khoảng 5x6 ô
+        -   Các điểm nối: Các hình tròn ở các vị trí khác nhau trên lưới, mỗi màu đại diện cho một cặp điểm
+        -   Các đường nối: Các đường cong/thẳng nối các điểm cùng màu lại với nhau
+        -   Tương tác: Người chơi nhấp chuột vào các ô để vẽ/kết nối các đường từ điểm này đến điểm khác
+    *   Mục tiêu/Nhiệm vụ:
+        -   Mỗi cặp điểm cùng màu phải được kết nối bằng một đường liên tục
+        -   Các đường phải không giao nhau
+        -   Mỗi ô trong lưới chỉ được sử dụng một lần
+        -   Phải kết nối tất cả các cặp và lấp đầy toàn bộ lưới để thắng
+    *   Thiết kế gameplay:
+        -   Giao diện: Hiển thị giao diện captcha như các level khác, lưới ô vuông (5*5), các điểm nối (3-4 cặp) và đường vẽ
+        -   Hiệu ứng: Vẽ đường khi nhấp chuột, kiểm tra và đánh dấu khi kết nối thành công
+        -   Thử thách: Các cặp điểm sẽ xuất hiện ngẫu nhiên trên lưới, yêu cầu sự chính xác và suy nghĩ logic để kết nối các cặp điểm (Lưu ý các cặp điểm sẽ xuất hiện với điều kiện có thể cho người chơi hoàn thành được level )

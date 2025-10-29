@@ -11,11 +11,12 @@ import MathProBlock from '../components/MathProBlock';
 import CatchDucksBlock from '../components/catchDucksBlock';
 import MinesweeperBlock from '../components/minesweeperBlock';
 import VegetableSelectionBlock from '../components/vegetableSelectionBlock';
+import PipePuzzleBlock from '../components/pipePuzzleBlock';
 import '../styles/game.css';
 
 // Define the order and types of games
-// Vegetable được đặt ở đầu để thử nghiệm
-const GAME_TYPES = ['vegetable', 'minesweeper', 'captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
+// Pipe Puzzle được đặt ở đầu để thử nghiệm
+const GAME_TYPES = ['pipePuzzle', 'vegetable', 'minesweeper', 'captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
 const MAX_LEVEL = GAME_TYPES.length;
 
 // Get the game type for the current level
@@ -181,6 +182,12 @@ export default function Game({level, setLevel, playSound}) {
                 case 'vegetable':
                     newBlockData = [{
                         type: 'vegetable',
+                        verified: null
+                    }];
+                    break;
+                case 'pipePuzzle':
+                    newBlockData = [{
+                        type: 'pipePuzzle',
                         verified: null
                     }];
                     break;
@@ -406,6 +413,24 @@ export default function Game({level, setLevel, playSound}) {
                         return (
                             <VegetableSelectionBlock
                                 key={`vegetable-${i}`}
+                                onSuccess={() => {
+                                    const newData = [...blockData];
+                                    newData[i].verified = true;
+                                    setBlockData(newData);
+                                }}
+                                onFailure={() => {
+                                    const newData = [...blockData];
+                                    newData[i].verified = false;
+                                    setBlockData(newData);
+                                }}
+                                playSound={playSound}
+                            />
+                        );
+                    }
+                    else if (block.type === 'pipePuzzle') {
+                        return (
+                            <PipePuzzleBlock
+                                key={`pipePuzzle-${i}`}
                                 onSuccess={() => {
                                     const newData = [...blockData];
                                     newData[i].verified = true;
