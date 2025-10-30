@@ -41,8 +41,6 @@ export default function Menu({setLevel, playSound}) {
                 </div>
                 <button className='new-game-button' onClick={() => changePage('/game')}>New Game</button>
                 <button className='leaderboard-button'onClick={() => changePage('/leaderboard')}>Leaderboard</button>
-                <button className='motivation-button' onClick={() => changePage('/motivation')}>Motivational Quotes</button>
-                <button className='about-button' onClick={() => changePage('/about')}>About</button>
             </div>
             <div className={`menu-flash ${displayClass}`}></div>
         </div>

@@ -16,8 +16,8 @@ import CardMatchingBlock from '../components/CardMatchingBlock';
 import '../styles/game.css';
 
 // Define the order and types of games
-// Card Matching được đặt ở đầu để thử nghiệm
-const GAME_TYPES = ['cardMatching', 'pipePuzzle', 'vegetable', 'minesweeper', 'captcha', 'puzzle', 'catchducks', 'tictactoe', 'quiz', 'wordsearch', 'circle', 'mathpro'];
+// Thứ tự level từ 1-12 theo yêu cầu mới
+const GAME_TYPES = ['captcha', 'quiz', 'vegetable', 'wordsearch', 'pipePuzzle', 'cardMatching', 'tictactoe', 'puzzle', 'circle', 'minesweeper', 'mathpro', 'catchducks'];
 const MAX_LEVEL = GAME_TYPES.length;
 
 // Get the game type for the current level
@@ -32,11 +32,11 @@ export default function Game({level, setLevel, playSound}) {
     const [timer, setTimer] = useState(-1);
     const [blockData, setBlockData] = useState([]);
     const [isProcessing, setIsProcessing] = useState(false); // Prevent double-processing
+    const [displayOn, setDisplayOn] = useState(false); // Animation state
 
-    // Component mount - không tự động reset level nữa
-    // Level sẽ được reset từ GameOver hoặc Menu khi cần
+    // Component mount - trigger fade-in animation
     useEffect(() => {
-
+        setTimeout(() => setDisplayOn(true), 50);
     }, [])
 
     // Debug: Log level changes
@@ -269,9 +269,10 @@ export default function Game({level, setLevel, playSound}) {
 
 
     const timerWidth = {width: 100 - timer*10 < 100 ? `${100 - timer*10}%` : `${100}%`};
+    const displayClass = displayOn ? 'display-on' : '';
 
     return (
-        <div className='game-content'>
+        <div className={`game-content ${displayClass}`}>
             <div className='level-tracker'>Level: {level}</div>
             <div className='captcha-blocks'>
                 {blockData.map((block, i) => {

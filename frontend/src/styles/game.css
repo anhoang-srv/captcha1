@@ -4,6 +4,14 @@
     justify-content:space-around;
     width: 100vw;
     height: 100vh;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.game-content.display-on {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .level-tracker {

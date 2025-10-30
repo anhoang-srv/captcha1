@@ -77,7 +77,7 @@ export default function GameOver({level, setLevel, setLeaders, playSound}) {
     }
 
     return (
-        <div className='menu'>
+        <div className='menu game-over'>
             <div className={`menu-content ${displayClass}`}>
                 <div className='menu-title-wrapper'>
                     <div className='logo'>🤖</div>
