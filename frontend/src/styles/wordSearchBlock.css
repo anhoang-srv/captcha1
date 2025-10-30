@@ -92,9 +92,24 @@
     border-color: #0f9d58;
 }
 
-.checkmark {
+/* Scoped checkmark for word search block - inline display next to word */
+.word-search-block .checkmark {
     display: inline-block;
     font-weight: bold;
+    color: #0f9d58;
+    margin-right: 4px;
+    animation: checkmarkFadeIn 0.3s ease-out;
+}
+
+@keyframes checkmarkFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .word-search-progress {
