@@ -4,22 +4,21 @@ import { InlineMath } from 'react-katex';
 import '../styles/mathProBlock.css';
 
 const MathProBlock = ({ onSuccess, onFailure, playSound }) => {
-    // Define expressions with their LaTeX display string, value, and correct order
     const initialExpressions = useMemo(() => [
-        { display: '\\frac{12}{13}', value: 12 / 13, order: 0 },
-        { display: '\\log_3(25)', value: Math.log(25) / Math.log(3), order: 1 },
-        { display: '\\sqrt{13}', value: Math.sqrt(13), order: 2 },
-        { display: '\\frac{6\\pi}{2}', value: (6 * Math.PI) / 2, order: 3 },
-        { display: '\\int_2^5 x \\,dx', value: 10.5, order: 4 },
-        { display: 'e^3', value: Math.pow(Math.E, 3), order: 5 },
+        { display: '\\frac{12}{13}', value: 12 / 13, order: 0 }, // Phân số
+        { display: '\\frac{51}{17}', value: 51 / 17, order: 1 }, // Phân số
+        { display: '\\sqrt{13}', value: Math.sqrt(13), order: 2 }, // Căn bậc hai
+        { display: '\\frac{6\\pi}{2}', value: (6 * Math.PI) / 2, order: 3 }, // Phân số
+        { display: '2^5-11\\times 2', value: Math.pow(2, 5) - 11 * 2, order: 4 },
+        { display: '3^3-2^3', value: Math.pow(3, 3) - Math.pow(2, 3), order: 5 },
         { display: '4!', value: 24, order: 6 },
-        { display: '\\sum_{i=4}^8 i', value: 30, order: 7 },
+        { display: '\\sum_{i=4}^8 i', value: 30, order: 7 }, // Tổng từ 4 đến 8
         { display: '\\infty', value: Infinity, order: 8 },
     ], []);
 
     const [shuffledExpressions, setShuffledExpressions] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState([]);
-        const [status, setStatus] = useState('playing'); // playing, success, failure
+    const [status, setStatus] = useState('playing'); // playing, success, failure
     const [feedbackMessage, setFeedbackMessage] = useState('');
 
     // Shuffle expressions on initial load
@@ -27,7 +26,7 @@ const MathProBlock = ({ onSuccess, onFailure, playSound }) => {
         setShuffledExpressions([...initialExpressions].sort(() => Math.random() - 0.5));
     }, [initialExpressions]);
 
-        const handleExpressionClick = (expression) => {
+    const handleExpressionClick = (expression) => {
         // Prevent clicking if the game is over or the cell is already selected
         if (status !== 'playing' || selectedOrder.includes(expression.order)) return;
 
@@ -77,13 +76,13 @@ const MathProBlock = ({ onSuccess, onFailure, playSound }) => {
         <div className={`math-pro-block ${status}`}>
             <div className="math-pro-header">
                 <h3>Math Pro Challenge</h3>
-                <p>Click the expressions in ascending order of their values.</p>
+                <p>Chọn các biểu thức theo thứ tự từ nhỏ đến lớn</p>
             </div>
             <div className="math-pro-grid">
                 {shuffledExpressions.map((expr) => (
                     <div
                         key={expr.order}
-                        className={`math-pro-cell ${getCellClass(expr)}`}
+                        className={`math-pro-cell ${getCellClass(expr)}`} 
                         onClick={() => handleExpressionClick(expr)}
                     >
                         <InlineMath math={expr.display} />

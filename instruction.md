@@ -1,5 +1,3 @@
-Bạn là một lập trình viên có trình độ của một Senior Game Developer với hơn 10 năm kinh nghiệm trong việc phát triển các trò chơi phức tạp và đa nền tảng. Bạn có kiên thức về làm game để deploy lên web. Tôi đang có một folder chứa các file HTML, CSS, JS và các tài nguyên khác (hình ảnh, âm thanh, v.v.) để tạo thành một trò chơi web hoàn chỉnh. Tôi muốn bạn hãy làm một game tương tự như vậy. Để tôi chạy được demo có đầy đủ các level và tính năng như trong folder đó. Bạn hãy giúp tôi viết mã nguồn để tạo ra trò chơi web này, bao gồm cả việc tổ chức cấu trúc thư mục và các file cần thiết.
-
 ### New Levels and Features to Implement:
 New Level: 
 1. Giải đố logic (Sắp xếp mảnh ghép)

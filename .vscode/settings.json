@@ -1,0 +1,49 @@
+{
+  // ========================================
+  // LIVE SERVER CONFIGURATION
+  // ========================================
+  
+  // Port cố định cho Live Server
+  "liveServer.settings.port": 5500,
+  
+  // Cho phép truy cập từ mọi IP (bao gồm LAN)
+  // 0.0.0.0 = lắng nghe trên tất cả network interfaces
+  "liveServer.settings.host": "0.0.0.0",
+  
+  // Hiển thị local IP khi khởi động Live Server
+  "liveServer.settings.useLocalIp": true,
+  
+  // Thư mục gốc để serve (production build của React)
+  "liveServer.settings.root": "/frontend/build",
+  
+  // Browser mặc định khi mở Live Server
+  "liveServer.settings.CustomBrowser": "chrome",
+  
+  // Tự động mở browser khi start Live Server
+  "liveServer.settings.NoBrowser": false,
+  
+  // Bỏ qua các file/folder không cần thiết
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/*.scss",
+    "**/*.sass",
+    "**/node_modules/**",
+    "**/.git/**"
+  ],
+  
+  // Tự động reload khi file thay đổi
+  "liveServer.settings.donotShowInfoMsg": false,
+  
+  // Delay trước khi reload (ms)
+  "liveServer.settings.wait": 100,
+  
+  // ========================================
+  // EDITOR SETTINGS (Tùy chọn)
+  // ========================================
+  
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
+}
+
